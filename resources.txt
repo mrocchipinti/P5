@@ -1,0 +1,5 @@
+http://knockoutjs.com/
+https://developers.google.com/maps/
+Udacity discussions
+http://stackoverflow.com
+http://www.mediawiki.org/wiki/API:Query

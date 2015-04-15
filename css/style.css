@@ -1,0 +1,28 @@
+html, body
+{
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+#map-canvas
+{
+	height: 1000px;
+	margin: 0;
+	padding: 0;
+	float: right;
+	width: 70%;
+}
+
+#search-panel
+{
+	width: 30%;
+	float: left;
+}
+
+.wikipedia-container
+{
+	float: left;
+	width: 30%;
+	background-color: rgba(255,255,255,0.7);
+}
