@@ -30,7 +30,7 @@ function loadMarkers() {
     viewModel.points.push(new point('Oaklawn Cemetery', 27.954351, -82.457328));
     viewModel.points.push(new point('Powerhouse Gym', 27.950685, -82.448401));
     viewModel.points.push(new point('Centro Asturiano De Tampa', 27.962099, -82.450982));
-    viewModel.points.push(new point('Metropolitan Ministries', 27.963267, -82.459637));
+    viewModel.points.push(new point('The University of Tampa', 27.947188, -82.467113));
     viewModel.points.push(new point('The Salvation Army', 27.959196, -82.459739));
     viewModel.points.push(new point('Glazer Children\'s Museum', 27.949435, -82.461442));
 }
@@ -44,15 +44,20 @@ function refreshMarkersToMap() {
 
     // Add markers to map
     for (var i = 0 ; i < viewModel.points().length; i++) {
+        var iconImage = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|FF0000';
+        if (viewModel.points()[i].name == selectedMarker)
+            iconImage = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|00FF00'
+
         var marker = new google.maps.Marker({
             position: new google.maps.LatLng(viewModel.points()[i].lat, viewModel.points()[i].long),
             title: viewModel.points()[i].name,
-            map: map
+            map: map,
+            icon: iconImage
         })
 
         markers.push(marker);
 
-        attachEventListener(marker, marker.title)
+        attachEventListener(marker, marker.title);
     }
 }
 
@@ -60,6 +65,8 @@ function refreshMarkersToMap() {
 function attachEventListener(marker, title) {
     google.maps.event.addListener(marker, 'click', function () {
         loadWikiData(title);
+        selectedMarker = marker.title;
+        refreshMarkersToMap();
     });
 }
 
@@ -74,6 +81,8 @@ var viewModel = {
     // When a point it clicked, show wiki links
     pointClicked: function (point) {
         loadWikiData(point.name);
+        selectedMarker = point.name;
+        refreshMarkersToMap();
     },
 
     // When a filter value is entered, filter marker list
