@@ -57,7 +57,7 @@ function refreshMarkersToMap() {
 
         markers.push(marker);
 
-        attachEventListener(marker, marker.title)
+        attachEventListener(marker, marker.title);
     }
 }
 
