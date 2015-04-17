@@ -37,8 +37,8 @@ function loadMarkers() {
 
 function refreshMarkersToMap() {
     // Delete all old markers
-    for (var i = 0 ; i < markers.length; i++) {
-        markers[i].setMap(null);
+    for (var markerCnt = 0 ; markerCnt < markers.length; markerCnt++) {
+        markers[markerCnt].setMap(null);
     }
     markers = [];
 
@@ -46,14 +46,14 @@ function refreshMarkersToMap() {
     for (var i = 0 ; i < viewModel.points().length; i++) {
         var iconImage = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|FF0000';
         if (viewModel.points()[i].name == selectedMarker)
-            iconImage = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|00FF00'
+            iconImage = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|00FF00';
 
         var marker = new google.maps.Marker({
             position: new google.maps.LatLng(viewModel.points()[i].lat, viewModel.points()[i].long),
             title: viewModel.points()[i].name,
             map: map,
-            icon : iconImage
-        })
+            icon: iconImage
+        });
 
         markers.push(marker);
 
@@ -130,14 +130,14 @@ function loadWikiData(markerName) {
                 var url = 'http://en.wikipedia.org/wiki/' + articleStr;
                 $wikiElem.append("<li><a target='wiki' href='" + url + "'>" + articleStr + "</a></li>");
 
-            };
+            }
 
             clearTimeout(wikiRequestTimeout);
         }
     });
 
     return false;
-};
+}
 
 $(document).ready(function () {
     ko.applyBindings(viewModel);
